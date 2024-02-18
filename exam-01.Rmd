@@ -110,7 +110,8 @@ flights %>%
   group_by(dest, origin, year) %>%
   count() %>%
   slice(1:10) %>%
-  arrange(desc(n)) 
+  arrange(desc(n)) %>%
+  top_n(10)
 ```
 
 ***The 10 most common destinations from NYC airports in 2013 were: LAX, ATL, ORD, SFO, CLT,BOS, MIA, MCO, DTW, and DFW.***
@@ -124,7 +125,8 @@ flights %>%
 flights %>%
   group_by(origin, carrier, year) %>%
   count() %>%
-  arrange(desc(n))
+  arrange(desc(n)) %>%
+  top_n(10)
 ```
 
 ***The 10 airlines with the most flights departing from NYC airports are: United Airlines (UA), Eve Air Alaska (EV), JetBlue Airways (B6), Delta Air Lines (DL), Envoy Air (MQ), American Airlines (AA), Endeavor Air (9E), US Airways (US), Southwest Airlines (WN), and Virgin America (VX).***
@@ -134,9 +136,24 @@ flights %>%
 
     a\.
     Which carrier had the highest mean arrival delay?
+    
+```{r}
+flights %>%
+  group_by(dep_delay, carrier) %>%
+  count() %>%
+  arrange(desc(dep_delay))
+```
+
 
     b\.
     Which carrier had the lowest mean arrival delay?
+    
+```{r}
+flights %>%
+  group_by(dep_delay, carrier) %>%
+  count() %>%
+  arrange(dep_delay)
+```
 
 4.  **Question 4 (10 points)** - What was the mean temperature at the origin airport on the day with the highest departure delay?
     Your answer should include the name of origin airport, the date with the highest departure delay, and the mean temperature on that day.
