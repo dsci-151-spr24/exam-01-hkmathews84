@@ -120,6 +120,15 @@ flights %>%
     In your narrative mention the names of the airlines as well.
     *Hint:* You can use the `airlines` dataset to look up the airline name based on `carrier` code.
 
+```{r}
+flights %>%
+  group_by(origin, carrier, year) %>%
+  count() %>%
+  arrange(desc(n))
+```
+
+***The 10 airlines with the most flights departing from NYC airports are: United Airlines (UA), Eve Air Alaska (EV), JetBlue Airways (B6), Delta Air Lines (DL), Envoy Air (MQ), American Airlines (AA), Endeavor Air (9E), US Airways (US), Southwest Airlines (WN), and Virgin America (VX).***
+
 3.  **Question 3 (10 points)** - Consider only flights that have non-missing arrival delay information.
     Your answer should include the name of the carrier in addition to the carrier code and the values asked.
 
