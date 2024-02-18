@@ -96,8 +96,24 @@ The main data is in the `flights` data frame, but there are additional data sets
 
 ## Questions
 
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+
 1.  **Question 1 (10 points)** - What are the ten most common destinations for flights from NYC airports in 2013?
-    Make a table that lists these in descending order of frequency and shows the number of fligts heading to each airport.
+    Make a table that lists these in descending order of frequency and shows the number of flights heading to each airport.
+    
+```{r}
+flights %>%
+  group_by(dest, origin, year) %>%
+  count() %>%
+  slice(1:10) %>%
+  arrange(desc(n)) 
+```
+
+***The 10 most common destinations from NYC airports in 2013 were: LAX, ATL, ORD, SFO, CLT,BOS, MIA, MCO, DTW, and DFW.***
 
 2.  **Question 2 (10 points)** - Which airlines have the most flights departing from NYC airports in 2013?
     Make a table that lists these in descending order of frequency and shows the number of flights for each airline.
